@@ -1,4 +1,5 @@
-# Replication Exercise #1: by Sam Cohen and Priscila Stisman
+# Replication Exercise #1: 
+### Sam Cohen and Priscila Stisman
 
 This repository contains the materials for our attempted replication of outcomes and code from Arthur Spirling's 2016 paper, "Democratization and Linguistic Complexity:
 The Effect of Franchise Extension on Parliamentary Discourse, 1832–1915."
