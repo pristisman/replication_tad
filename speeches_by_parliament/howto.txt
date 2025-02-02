@@ -1,0 +1,6 @@
+Speeches can be accessed at this link: https://andy.egge.rs/eggers_spirling_database.html
+
+1) Click "Download Here" 
+2) Extract files from the ZIP file
+3) Find "speeches_by_parliament" 
+4) Place this folder in code directory. The code will read in all CSVs starting with "speech"
