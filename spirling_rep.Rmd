@@ -1,6 +1,6 @@
 ---
-title: "Untitled"
-author: "Sam Cohen"
+title: "Replication Exercise 1"
+author: "Sam Cohen & Priscila Stisman"
 date: "2025-01-21"
 output: html_document
 ---
@@ -13,6 +13,7 @@ library(pacman)
 library(quanteda)
 library(pdftools)
 library(broom)
+library(here)
 pacman::p_load(readtext, quanteda.textstats)
 
 ```
@@ -21,7 +22,7 @@ pacman::p_load(readtext, quanteda.textstats)
 
 ```{r}
 # Reading in data
-bigframe <- get(load("bigframe.RData")) # change dir
+bigframe <- get(load("bigframe.RData")) 
 bigframe %>% head()
 
 ```
@@ -29,12 +30,16 @@ bigframe %>% head()
 ## Reading in speeches
 ```{r}
 # Fetching all speech csvs
-speech_csvs <- list.files("speeches_by_parliament", pattern = "^speech.*.csv$", full.names = TRUE) # choosing csvs that are speeches
+speech_csvs <- list.files("speeches_by_parliament", pattern = "^speech.*.csv$", full.names = TRUE) # choosing csvs that are speeches 
 
-# Combning csv
+# it starts with speech
+# * has something in the middle
+# $ ends with
+
+# Combining csv
 speeches <- speech_csvs %>%
-  lapply(read_csv) %>%  
-  bind_rows()
+  lapply(read_csv) %>%  #lapply apply the read_csv function - lappy applies a function (that already exists in r) to a set of dfs
+  bind_rows() #stack the csv files
 
 ```
 
@@ -43,7 +48,7 @@ speeches <- speech_csvs %>%
 ## Cleaning bigframe data
 ```{r}
 # Cleaning DF
-bigframe$year <- substr(bigframe$year.dummy, 1, 4) %>% as.integer() # Creating year variable
+bigframe$year <- substr(bigframe$year.dummy, 1, 4) %>% as.integer() # Creating year variable #taking the first 4 characters
 
 ```
 
@@ -57,6 +62,8 @@ speech_samples <- speeches %>% sample_n(10000) # Taking  n=10000 sample of speec
 # Creating corpus
 corpus <- corpus(speech_samples$body)
 
+#ccorpus2 <- corpus(speech_samples, text_field = "body") - other way of doing it.
+
 # Preprocessing 
 tokens <- tokens(corpus, 
                  split_hyphens = FALSE, # keep hyphenated words
@@ -67,13 +74,13 @@ tokens <- tokens(corpus,
                  valuetype = "regex") %>%  
   tokens_tolower() %>% # to lowercase
   tokens_remove(stopwords("en")) # remove stopwords
-tokens <- tokens_wordstem(tokens) # stemming
+tokens <- tokens_wordstem(tokens) # stemming (removing the end of words)
 
 ```
 ```{r}
 # Freeing up space for speed/efficiency
 rm(speeches, speech_csvs, big.frame)
-gc()
+gc() 
 ```
 
 # Text Analysis
@@ -83,13 +90,14 @@ gc()
 # DFM
 dfm_tokens <- dfm(tokens, min_docfreq = 0.05, max_docfreq = 0.95, docfreq_type = "prop", verbose = TRUE)
 
+#take out the very rare/very common tokens that don't help discriminate among docs
 ```
 
 ## TF-IDF
 ```{r}
 # TF-IDF Matrix
 tfidf_speeches <- dfm_tokens %>%
-  dfm_tfidf(scheme_tf = "prop", scheme_df = "inversemax")
+  dfm_tfidf(scheme_tf = "prop", scheme_df = "inversemax") 
 
 # Top TFIDF featyres
 topfeatures(tfidf_speeches)
@@ -122,6 +130,7 @@ speech_samples <- cbind(speech_samples, fre_scores)
 
 ```
 
+Note: -300 Flesch score.
 
 
 # Visuals
@@ -135,7 +144,7 @@ avg_readease_cabinet <- bigframe %>% group_by(year, cabinet) %>% summarize(avg_e
 ggplot(avg_readease_cabinet, aes(x = year, y = avg_ease, color = cabinet)) +
   geom_line() +
   scale_color_manual(values = c('1' = "blue", '0' = "red")) +  
-  geom_vline(xintercept = 1867, linetype = "dashed", color = "darkgray") +
+  geom_vline(xintercept = 1867, linetype = "dashed", color = "darkgray") 
   labs(y = "FRE", x = "Year") + 
   theme_minimal()
 
@@ -144,12 +153,13 @@ ggplot(avg_readease_cabinet, aes(x = year, y = avg_ease, color = cabinet)) +
 ```{r}
 # OLS
 ggplot(avg_readease_cabinet, aes(x = year, y = avg_ease, color = cabinet)) +
-  geom_smooth(method = "lm", se = FALSE) +
+  geom_smooth(method = "lm", se = TRUE) +
   scale_color_manual(values = c('1' = "blue", '0' = "red")) +  
   geom_vline(xintercept = 1867, linetype = "dashed", color = "darkgray") +
   labs(y = "FRE", x = "Year") + 
-  theme_minimal()
+  theme_minimal() 
 
+# which are the regressors here in this regression?
 ```
 
 ## Boxplot: FRE scores (replication) (p. 127)
