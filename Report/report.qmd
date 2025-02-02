@@ -12,17 +12,50 @@ This report will detail our efforts to replicate specific code and outcomes from
 
 ## Differences & Similarities
 
-### FRE scores 
+### FRE scores
 
 The FRE Statistics results are very similar, though not identical. Our values for the minimum, first quartile, median, mean, and third quartile closely match those in the paper, with only a slight difference in the third quartile. However, the maximum differs significantly: while the paper reports a maximum FRE of 205.80, our result is 121.22. The bulk of the distribution is between 0 and 100, as in the paper.
 
 The average readability score, in both the paper and our replication exercise, indicates that around the year 1860, the average cabinet speech becomes more comprehensible than the average non-cabinet speech, whereas before that, their mean comprehension scores were quite similar.
 
+### FRE Trends
+
+Spirling plots the mean FRE scores over time by cabinet position (Ibid, 128). The general trend is stable and relatively unchanging before 1867, after which the scores increase dramatically for cabinet members, and only slightly for backbenchers (Ibid). Likewise, in our replication, we get a similar result. One slight difference is that the point of convergence between cabinet members and backbenchers in terms of readability happens much earlier than it does in Spirling’s plot. However, this might be due to us aggregating based on year and not by quarter. 
+
+We also recreate the average syllable count per word score over time plot (Ibid, 129). We find almost the exact same trends (a decrease for cabinet MPs, stability for backbenchers), albeit at a smoother rate due to us aggregating by year and not quarter. 
+
+Overall, the general trends seem to match, with cabinet FRE scores overtaking those of backbenchers several years before 1867.
+
 ### OLS Regression
 
 The OLS regression results for comprehension scores by cabinet position, using the same set of controls as the authors, yield very similar coefficients, though not identical. However, the sign of the coefficients is consistent in all cases. Some of our coefficients have lower p-values than those in the paper. For example, the Reform Act dummy is significant at the 1% level in our results, while in the paper, it is significant at the 5% level.
 
-
 ## Autopsy
 
+### Data Retrieval
+
+We use two primary data sets, which are essentially different iterations of each other. The first data set is the “bigframe” data set used for quantitative analysis in Spirling’s research. This data set contains metadata on the year a speech took place, the word and syllable count, FRE score, political party of the MP in question, whether or not they were a cabinet member, and the competitiveness of their seat. We also use the raw speech data in both our attempt to recreate much Spirling’s analysis, as well as in our original additions. Like Spirling, we subset for speeches only between the years 1832 and 1915. We also derive a random sample of 10,000 from the raw speeches due to the sheer size of the data. 
+
+Retrieving this data was not very intuitive. While Spirling has a Harvard Dataverse page for his replication materials, it only included the code and bigframe numerical data—that is, there was no raw data in this repository. To find the raw speech data, we navigated to the Arthur Spirling and Andy Eggers Database, which included the CSVs for the raw data.
+
+### Replication Challenges
+
+One of the primary challenges we faced was the fact that we used only a sample of the raw speech data. While we believed 10,000 observations out of well over 600,000 would be representative, there were still some discrepancies in our results. For instance, while the mean and median FRE scores for our sampled speeches were relatively similar to those in the paper, the standard deviation was a lot larger, and the minimum and maximum values we quite different as well.
+
+Another challenge we encountered was interpreting very large and very small FRE scores. While FRE scores typically range between 0 and 100, both the paper and our replication indicated scores much higher and lower than these thresholds. After some research, we discovered that it is indeed possible to have FRE scores below 0 (if language is particularly complex).
+
+### Replication Successes
+
+Perhaps our greatest replication success was our results for Spirling's multivariate regression. Coefficients differed only slightly, if at all. This success was likely due to us using the bigframe data rather than our samples and cleaned raw data. While a LaTex illustration of the regression was not provided in the paper, we were still able to recreate it with good results.
+
 ## Extension
+
+## References
+
+Eggers, A. & Spirling A. (Accessed 2025). Eggers and Spirling Database. <https://andy.egge.rs/eggers_spirling_database.html>
+
+Prokopets, M. (Accessed 2025). The Beginner’s Guide to Flesch Reading Ease Scores. Nira. https://nira.com/flesch-reading-ease/
+
+Replication Materials for: 'Democratization and Linguistic Complexity: The Effect of Franchise Extension on Parliamentary Discourse, 1832--1915' - The Journal of Politics. (Accessed 2025). Harvard Dataverse. https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/DDQDMS
+
+Spirling, A. (2016). Democratization and Linguistic Complexity: The Effect of Franchise Extension on Parliamentary Discource, 1832-1915. Journal of Politics. 78(1).
