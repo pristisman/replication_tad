@@ -18,6 +18,8 @@ library(broom)
 library(here)
 pacman::p_load(readtext, quanteda.textstats)
 
+set.seed(10) # Setting sed for replication purposes
+
 ```
 
 ## Reading in metadata
@@ -696,10 +698,17 @@ tfidf_long %>% arrange(desc(cosine)) %>% filter(cosine < 0.999) %>% head(10) # t
 
 
 ```{r}
-# Ex: 2nd closest cosine similarity scores for speeches
-speech_samples[545,]
-speech_samples[4161,]
+# Ex: 1st closest cosine similarity scores for speeches
+speech_samples[5846,]
+speech_samples[1562,]
+
+# EX: 2nd closest cosine similarity score for speeches
+speech_samples[5158,]
+speech_samples[1349,]
 
 ```
+```{r}
 
+
+```
 >>>>>>> Stashed changes
