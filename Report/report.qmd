@@ -1,27 +1,21 @@
 ---
-title: "Replication Exercise Report"
+title: "Replication Exercise #1: Report"
 author: "Priscila Stisman | Samuel Cohen"
-format: html
+format: pdf
 editor: visual
+toc: true
 ---
 
-## Quarto
+## Introduction
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+This report will detail our efforts to replicate specific code and outcomes from Arthur Spirling’s 2016 paper “Democratization and Linguistic Complexity.” Spirling’s paper explores how the readability of parliamentary speeches increases overtime, especially as a result of the Second Reform Act of 1867, which took away property requirements for voting and enfranchised a significant portion of Britain’s population (Spirling 2016). He hypothesizes that cabinet members’ speech interpretability will become increasingly understandable overtime due to their prominent roles in government and newfound need to appeal to a new electorate— one that was less wealthy, less literate, and less educated as a whole (Ibid). Contrarily, backbenchers would not need to change their speech, as they are generally considered the “rank and file” and are not given the same level of public attention (Ibid). Spirling uses temporal trends of readability metrics (FRE scores, for instance) and multivariate regressions to assist in his findings, which were relatively similar to his hypothesis. Our project attempts to replicate significant portions of this study, specifically temporal trends of readability, and the primary multivariate regression Spirling runs. We also add original research to this domain using the same data: readability of speeches by party, and TF-IDF and cosine similarity score analysis.
 
-## Running Code
+## Differences & Similarities
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+### FRE scores for parliamentary speeches
 
-```{r}
-1 + 1
-```
+The FRE Statistics results are very similar, though not identical. Our values for the minimum, first quartile, median, mean, and third quartile closely match those in the paper, with only a slight difference in the third quartile. However, the maximum differs significantly: while the paper reports a maximum FRE of 205.80, our result is 121.22.
 
-You can add options to executable code like this
+## Autopsy
 
-```{r}
-#| echo: false
-2 * 2
-```
-
-The `echo: false` option disables the printing of code (only output is displayed).
+## Extension
