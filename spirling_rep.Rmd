@@ -407,13 +407,13 @@ ggplot(data=bigframe, mapping=aes(y=FK_read.ease))+geom_boxplot()
 ## Avg. Syllable per word count over time by cabinet position (replication) (p. 129)
 ```{r}
 # Plotting
-bigframe %>% group_by(year_q, cabinet) %>% 
+bigframe %>% group_by(year, cabinet) %>% 
   mutate(syl_per_word = syllable.count
 / word.count) %>% 
   summarize(mean_syl_per_word = mean(syl_per_word)) %>% 
-  ggplot(., aes(x = year_q, y = mean_syl_per_word, color = cabinet)) + 
+  ggplot(., aes(x = year, y = mean_syl_per_word, color = cabinet)) + 
   geom_line() + 
-  labs(y = "Syllable per Word Count", x = "Year") 
+  labs(y = "Mean Syllable per Word Count", x = "Year") 
 
 ```
 # Tests
