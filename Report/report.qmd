@@ -12,13 +12,13 @@ This report will detail our efforts to replicate specific code and outcomes from
 
 ## Differences & Similarities
 
-### FRE scores for parliamentary speeches
+### FRE scores 
 
 The FRE Statistics results are very similar, though not identical. Our values for the minimum, first quartile, median, mean, and third quartile closely match those in the paper, with only a slight difference in the third quartile. However, the maximum differs significantly: while the paper reports a maximum FRE of 205.80, our result is 121.22. The bulk of the distribution is between 0 and 100, as in the paper.
 
 The average readability score, in both the paper and our replication exercise, indicates that around the year 1860, the average cabinet speech becomes more comprehensible than the average non-cabinet speech, whereas before that, their mean comprehension scores were quite similar.
 
-## OLS Regression
+### OLS Regression
 
 The OLS regression results for comprehension scores by cabinet position, using the same set of controls as the authors, yield very similar coefficients, though not identical. However, the sign of the coefficients is consistent in all cases. Some of our coefficients have lower p-values than those in the paper. For example, the Reform Act dummy is significant at the 1% level in our results, while in the paper, it is significant at the 5% level.
 
