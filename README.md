@@ -12,4 +12,4 @@ The code uses the **bigrame.Rdata** file (quantitative data on speeches) found i
 
 ## Other resources
 - The "Original Paper" folder contains the full article by Spirling, as well as the author's replication code and materials. The Harvard Dataverse page for this paper can be found here: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/EZBYBZ
-- 
+- The "Report" folder contains our analysis of the replication, including differences, similarities, and additions. 
