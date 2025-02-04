@@ -50,8 +50,6 @@ Perhaps our greatest replication success was our results for Spirling's multivar
 
 ## Extension
 
-The following are our additions to the research presented in this paper, as well as suggested improvements.
-
 ### Party Affiliation and Speech Readability
 
 For our original additions, we decided to look at how readability evolves along party lines. The majority of Spirling's paper focuses on how cabinet status affects speech readability, rather than party affiliation. We decided to explore speech readability over time by political party.
@@ -62,15 +60,11 @@ Our findings indicate that speech becomes easier over time after 1867 for all MP
 
 ### TF-IDF Weighting
 
-For our original analysis, we also used the raw speech data for text analysis. Spirling's analysis mostly focuses on readability, so we decided to explore a bit more in the weeds. We first tokenized, preprocessed, and created a data frequency matrix (DFM). We then took the weighted TF-IDF scores for each token to find which words carried the most importance throughout the corpus.
-
-We find that simple procedural words have the highest scores, as speeches can often be very formulaic. For instance, "yes," "sir," "amend," "order," and "bill" had the highest weighted scores.
+For our original analysis, we also used the raw speech data for text analysis. Spirling's analysis mostly focuses on readability, so we decided to explore a bit more in the weeds. We first tokenized, preprocessed, and created a data frequency matrix (DFM). We then took the weighted TF-IDF scores for each token to find which words carried the most importance throughout the corpus. We find that simple procedural words have the highest scores, as speeches can often be very formulaic. For instance, "yes," "sir," "amend," "order," and "bill" had the highest weighted scores.
 
 ### Cosine Similarity
 
-Finally, we used cosine similarity to find the speeches that are most similar with each other. We utilize our TF-IDF matrix to find the closest cosine similarity for each document. We then created a cosine similarity matrix, and pivoted this table to long format for ease of analysis. After ordering by cosine similarity score, we analyzed the document diads with the highest scores.
-
-Similar to the highest TF-IDF scores, the speeches with the highest similarity scores exhibited very formulaic language that appears to be common in parliamentary procedure. For instance, the speech duo with the highest cosine similarity score between each other was an MP in 1876 saying "he will repeat the question on Monday," and an MP in 1890 saying "I will repeat the question on Monday." The next highest duo was an MP in 1872 saying "He would withdraw the amendment," and another in 1899 saying "I will withdraw the amendment."
+Finally, we used cosine similarity to find the speeches that are most similar with each other. We utilize our TF-IDF matrix to find the closest cosine similarity for each document. Similar to the highest TF-IDF scores, the speeches with the highest similarity scores exhibited very formulaic language that appears to be common in parliamentary procedure. For instance, the speech duo with the highest cosine similarity score between each other was an MP in 1876 saying "he will repeat the question on Monday," and an MP in 1890 saying "I will repeat the question on Monday." The next highest duo was an MP in 1872 saying "He would withdraw the amendment," and another in 1899 saying "I will withdraw the amendment."
 
 ### Suggested Improvements
 
