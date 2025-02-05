@@ -15,3 +15,4 @@ Our report on our replication and additions can be found in the "Report" folder.
 
 ## Other resources
 - The "Original Paper" folder contains the full article by Spirling, as well as the author's replication code and materials. The Harvard Dataverse page for this paper can be found here: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/EZBYBZ
+- The "Presentation" folder contains a PDF of our presentation, which was created using Overleaf
