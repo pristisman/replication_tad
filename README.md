@@ -5,7 +5,7 @@ This repository contains the materials for our attempted replication of outcomes
 The Effect of Franchise Extension on Parliamentary Discourse, 1832–1915."
 
 ## Code 
-The code can be found in the **spirling_rep.rmd** file. 
+The code can be found in the **spirling_rep.rmd** file. The script reads in data from this repository as is, and no change in directory is needed. 
 
 ## Data
 The code uses the **bigrame.Rdata** file (quantitative data on speeches) found in the same directory, as well as the raw speech data (the code access speech CSVs in a folder titled "**speeches_by_parliament**"), which should be placed in the same directory in the folder with the same name. The raw speeches data was too large to push to this repository, and can be found at this link: https://andy.egge.rs/eggers_spirling_database.html
