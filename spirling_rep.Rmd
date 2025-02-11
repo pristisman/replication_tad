@@ -14,6 +14,7 @@ library(quanteda)
 library(pdftools)
 library(broom)
 library(zoo)
+library(lubridate)
 
 set.seed(10)
 
@@ -49,6 +50,7 @@ speeches <- speech_csvs %>%
 ```{r}
 # Cleaning DF
 bigframe$year <- substr(bigframe$year.dummy, 1, 4) %>% as.integer() # Creating year variable
+bigframe$year_q <- as.character(bigframe$year.dummy) %>% yq() # Creating session(yearly quarter) variable
 
 ```
 
@@ -149,12 +151,15 @@ ggplot(avg_readease_cabinet, aes(x = year, y = avg_ease, color = cabinet)) +
 ## OLS: Readability over time by Cabinet position (replication) (p. 128)
 ```{r}
 # OLS
-ggplot(avg_readease_cabinet, aes(x = year, y = avg_ease, color = cabinet)) +
+ggplot(bigframe %>% group_by(year_q, cabinet) %>% summarize(avg_ease = mean(FK_read.ease))
+, aes(x = year_q, y = avg_ease, color = cabinet)) +
   geom_smooth(method = "lm", se = FALSE) +
+  geom_vline(xintercept = as.numeric(yq("1867_1")), linetype = "dashed", color = "darkgray") +
+  geom_point(alpha = 0.30) +
   scale_color_manual(values = c('1' = "blue", '0' = "red")) +  
-  geom_vline(xintercept = 1867, linetype = "dashed", color = "darkgray") +
   labs(y = "FRE", x = "Year") + 
   theme_minimal()
+
 
 ```
 
