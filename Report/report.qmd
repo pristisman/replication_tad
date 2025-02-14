@@ -8,7 +8,7 @@ toc: true
 
 ## Introduction
 
-This report will detail our efforts to replicate specific code and outcomes from Arthur Spirling’s 2016 paper “Democratization and Linguistic Complexity.” Spirling’s paper explores how the readability of parliamentary speeches increases overtime, especially as a result of the Second Reform Act of 1867, which took away property requirements for voting and enfranchised a significant portion of Britain’s population (Spirling 2016). He hypothesizes that cabinet members’ speech interpretability will become increasingly understandable overtime due to their prominent roles in government and newfound need to appeal to a new electorate— one that was less wealthy, less literate, and less educated as a whole (Ibid). Contrarily, backbenchers would not need to change their speech, as they are generally considered the “rank and file” and are not given the same level of public attention (Ibid). Spirling uses temporal trends of readability metrics (FRE scores, for instance) and multivariate regressions to assist in his findings, which were relatively similar to his hypothesis. Our project attempts to replicate significant portions of this study, specifically temporal trends of readability, and the primary multivariate regression Spirling runs. We also add original research to this domain using the same data: readability of speeches by party, and TF-IDF and cosine similarity score analysis.
+This report will detail our efforts to replicate specific code and outcomes from Arthur Spirling’s 2016 paper “Democratization and Linguistic Complexity.” Spirling’s paper explores how the readability of parliamentary speeches changes overtime, especially as a result of the Second Reform Act of 1867. This act took away some of the property requirements for voting and enfranchised a significant portion of Britain’s population (Spirling 2016). Spirling hypothesizes that cabinet members’ speech interpretability will become increasingly understandable overtime due to their prominent roles in government and newfound need to appeal to a new electorate— one that was less wealthy, less literate, and less educated as a whole (Ibid). Contrarily, backbenchers would not need to change their speech, as they are generally considered the “rank and file” and are not given the same level of public attention (Ibid). Spirling uses temporal trends of readability metrics (FRE scores, for instance) and multivariate regressions to assist in his findings, which were relatively similar to his hypothesis. Our project attempts to replicate significant portions of this study, specifically temporal trends of readability, and the primary multivariate regression Spirling runs. We also add original research to this domain using the same data: readability of speeches by party, and TF-IDF and cosine similarity score analysis.
 
 ## Differences & Similarities
 
@@ -20,7 +20,7 @@ The average readability score, in both the paper and our replication exercise, i
 
 ### FRE Trends
 
-Spirling plots the mean FRE scores over time by cabinet position (Ibid, 128). The general trend is stable and relatively unchanging before 1867, after which the scores increase dramatically for cabinet members, and only slightly for backbenchers (Ibid). Likewise, in our replication, we get a similar result. One slight difference is that the point of convergence between cabinet members and backbenchers in terms of readability happens much earlier than it does in Spirling’s plot. However, this might be due to us aggregating based on year and not by quarter. 
+Spirling plots the mean FRE scores over time by cabinet position (Ibid, 128). The general trend is stable and relatively unchanging before 1867, after which the scores increase dramatically for cabinet members, and only slightly for backbenchers (Ibid). Likewise, in our replication, we get a similar result. One slight difference is that the point of convergence between cabinet members and backbenchers in terms of readability happens much earlier than it does in Spirling’s plot.
 
 We also recreate the average syllable count per word score over time plot (Ibid, 129). We find almost the exact same trends (a decrease for cabinet MPs, stability for backbenchers), albeit at a smoother rate due to us aggregating by year and not quarter. 
 
@@ -28,7 +28,7 @@ Overall, the general trends seem to match, with cabinet FRE scores overtaking th
 
 ### OLS Regression
 
-The OLS regression results for comprehension scores by cabinet position, using the same set of controls as the authors, yield very similar coefficients, though not identical. However, the sign of the coefficients is consistent in all cases. Some of our coefficients have lower p-values than those in the paper. For example, the Reform Act dummy is significant at the 1% level in our results, while in the paper, it is significant at the 5% level.
+The OLS regression results for comprehension scores by cabinet position, using the same set of controls as the authors, yield very similar coefficients. Specifically, the interaction between cabinet status and post-1867 status (the main variable in question) are both 5.22. Some of our coefficients have lower p-values than those in the paper. For example, the Reform Act dummy is significant at the 1% level in our results, while in the paper, it is significant at the 5% level.
 
 ## Autopsy
 
@@ -40,7 +40,7 @@ Retrieving this data was not very intuitive. While Spirling has a Harvard Datave
 
 ### Replication Challenges
 
-One of the primary challenges we faced was the fact that we used only a sample of the raw speech data. While we believed 10,000 observations out of well over 600,000 would be representative, there were still some discrepancies in our results. For instance, while the mean and median FRE scores for our sampled speeches were relatively similar to those in the paper, the standard deviation was a lot larger, and the minimum and maximum values we quite different as well.
+One of the primary challenges we faced was the fact that we used only a sample of the raw speech data. While we believed 10,000 observations out of well over 600,000 would be representative, there were still some discrepancies in our results. For instance, while the mean and median FRE scores for our sampled speeches were relatively similar to those in the paper, the standard deviation was a lot larger, and the minimum and maximum values were quite different as well.
 
 Another challenge we encountered was interpreting very large and very small FRE scores. While FRE scores typically range between 0 and 100, both the paper and our replication indicated scores much higher and lower than these thresholds. After some research, we discovered that it is indeed possible to have FRE scores below 0 (if language is particularly complex).
 
@@ -64,7 +64,7 @@ For our original analysis, we also used the raw speech data for text analysis. S
 
 ### Cosine Similarity
 
-Finally, we used cosine similarity to find the speeches that are most similar with each other. We utilize our TF-IDF matrix to find the closest cosine similarity for each document. Similar to the highest TF-IDF scores, the speeches with the highest similarity scores exhibited very formulaic language that appears to be common in parliamentary procedure. For instance, the speech duo with the highest cosine similarity score between each other was an MP in 1876 saying "he will repeat the question on Monday," and an MP in 1890 saying "I will repeat the question on Monday." The next highest duo was an MP in 1872 saying "He would withdraw the amendment," and another in 1899 saying "I will withdraw the amendment."
+Finally, we used cosine similarity to find the speeches that are most similar with each other. We utilized our TF-IDF matrix to find the closest cosine similarity for each document. Similar to the highest TF-IDF scores, the speeches with the highest similarity scores exhibited very formulaic language that appears to be common in parliamentary procedure. For instance, the speech duo with the highest cosine similarity score between each other was an MP in 1876 saying "he will repeat the question on Monday," and an MP in 1890 saying "I will repeat the question on Monday." The next highest duo was an MP in 1872 saying "He would withdraw the amendment," and another in 1899 saying "I will withdraw the amendment."
 
 ### Suggested Improvements
 
